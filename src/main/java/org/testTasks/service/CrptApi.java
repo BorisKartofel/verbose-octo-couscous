@@ -39,12 +39,9 @@ public class CrptApi {
         if (scheduleTimeOfSentDocuments.size() < requestLimit) {
 
             scheduleTimeOfSentDocuments.add(scheduleTimeOfSentDocuments.size(), System.currentTimeMillis());
-            System.out.println(scheduleTimeOfSentDocuments);
 
             executorService.execute(() -> sendDocumentAsJsonByHttp(productDocument, signature));
         } else {
-
-            System.out.println(scheduleTimeOfSentDocuments);
 
             // Планируем отложенную задачу через определённое время
             executorService.schedule(() -> sendDocumentAsJsonByHttp(productDocument, signature),
